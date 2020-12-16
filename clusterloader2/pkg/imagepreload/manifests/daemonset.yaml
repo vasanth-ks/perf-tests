@@ -16,10 +16,10 @@ spec:
       {{range $idx, $image := .Images}}
       - name: preload-{{$idx}}
         image: docker
-        command: ["docker", "pull", "{{$image}}"]
+        command: ["ctr", "pull", "{{$image}}"]
         volumeMounts:
         - name: docker
-          mountPath: /var/run
+          mountPath: /var/run/containerd/containderd.sock
       {{end}}
       volumes:
       - name: docker
